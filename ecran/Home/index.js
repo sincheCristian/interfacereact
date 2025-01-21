@@ -1,11 +1,40 @@
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native'
 import React from 'react'
+import dashBoardStyles from './styles.js';
+import { FakeActivity } from '../../fakeData/fakeActivity.js';
 
 const Home = () => {
   return (
-    <View >
-      <Text>this is my first application in demo</Text>
-    </View>
+    <ScrollView>
+      {/*DEBUT  du Header*/}
+      <View style ={dashBoardStyles.header}>
+      <Text style ={dashBoardStyles.userName}>Nareolle</Text>
+      <Image source={require('./../../assets/nareollebb.jpg')}style={dashBoardStyles.userImg}/> 
+      </View>     
+      {/*FIN  du Header*/}
+
+
+      {/*liste des activitées*/}
+      <FlatList 
+      data={FakeActivity}
+      keyExtractor={item =>item.id}
+      horizontal ={true}
+      showsHorizontalScrollIndicator={false}
+      style={dashBoardStyles.scrollableList}
+
+      renderItem = {({item})=>{
+       return(
+       <TouchableOpacity style={dashBoardStyles.scrollableItem}>
+        <Text style={dashBoardStyles.mainText}>{item.mainText}</Text>
+        <Text style={dashBoardStyles.subtext}>{item.subText}</Text>
+      </TouchableOpacity>); 
+      }}
+      />
+      {/*liste des activitées fin*/}
+
+
+
+    </ScrollView>
   )
 }
 
