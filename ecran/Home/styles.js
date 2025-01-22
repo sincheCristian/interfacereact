@@ -19,6 +19,21 @@ const dashBoardStyles = StyleSheet.create({
         fontSize : 16,
     },
 
+    title :{
+        paddingHorizontal:PADDING.horizontal,
+        paddingVertical:PADDING.vertical,
+        fontWeight : 'bold',
+    },
+
+   title_space_between:{
+        paddingHorizontal:PADDING.horizontal,
+        paddingVertical:PADDING.vertical,
+        fontWeight : 'bold',
+        flexDirection : 'row',
+        justifyContent:'space-between',
+        marginTop: 15,
+    },
+
     // style de flatlist
     scrollableList :{
         paddingHorizontal:PADDING.horizontal,
@@ -31,8 +46,11 @@ const dashBoardStyles = StyleSheet.create({
         paddingVertical:15,
         backgroundColor:'white',
         marginRight:15,
+        width:200,
+        height:150,
         elevation : 1,
-        textAlign : 'center'
+        textAlign : 'center',
+        borderRadius : 5,
     },
 
     mainText : {
@@ -42,14 +60,7 @@ const dashBoardStyles = StyleSheet.create({
     subtext:{
         marginTop:3,
         fontSize: 12,
-    }
-
-
-
-
-
-
-
+    },
 });
 
 export default dashBoardStyles;

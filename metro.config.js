@@ -1,4 +1,4 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 
 /**
  * Metro configuration
@@ -6,6 +6,19 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  *
  * @type {import('metro-config').MetroConfig}
  */
-const config = {};
+const defaultConfig = getDefaultConfig(__dirname);
 
-module.exports = mergeConfig(getDefaultConfig(__dirname), config);
+const customConfig = {
+  resolver: {
+    // Supprime SVG des fichiers considérés comme des assets statiques
+    assetExts: defaultConfig.resolver.assetExts.filter(ext => ext !== 'svg'),
+    // Ajoute SVG aux fichiers sources
+    sourceExts: [...defaultConfig.resolver.sourceExts, 'svg'],
+  },
+  transformer: {
+    // Utilise react-native-svg-transformer pour transformer les fichiers SVG
+    babelTransformerPath: require.resolve('react-native-svg-transformer'),
+  },
+};
+
+module.exports = mergeConfig(defaultConfig, customConfig);
